@@ -11,5 +11,5 @@ class User < ApplicationRecord
     validates :password_confirmation, presence: true
 
     extend FriendlyId
-    friendly_id :name, :use => [:slugged, :finders]
+    friendly_id :name, :use => [:slugged]
 end
