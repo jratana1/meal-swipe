@@ -12,6 +12,12 @@
     <%= render 'layouts/navigation' if current_user(session) %>
     
   <body>
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= "Error: #{msg}" %>
+    </div>
+  <% end %> 
+
     <%= yield %>
   </body>
 </html>

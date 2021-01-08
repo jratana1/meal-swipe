@@ -8,6 +8,7 @@ gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'friendly_id', '~> 5.4.0'
+gem 'pry-rails', :group => :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
