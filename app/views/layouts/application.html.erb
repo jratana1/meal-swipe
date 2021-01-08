@@ -9,12 +9,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
     
-    <%= render 'layouts/navigation' if current_user(session) %>
+    
+  <%= render 'layouts/navigation' if signed_in? %>
     
   <body>
   <% flash.each do |type, msg| %>
     <div class="alert alert-info">
-      <%= "Error: #{msg}" %>
+      <%= msg %>
     </div>
   <% end %> 
 
