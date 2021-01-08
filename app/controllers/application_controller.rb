@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
   
     def require_login
       redirect_to root_path unless session.include? :user_id
-    end  
+    end 
+    
+    def require_no_session
+      redirect_to user_path(current_user) if session.include? :user_id
+    end
 end

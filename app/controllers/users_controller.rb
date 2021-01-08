@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
-    
+    before_action :require_no_session, only: [:new, :create]
+
     def index
         #friends list
     end
