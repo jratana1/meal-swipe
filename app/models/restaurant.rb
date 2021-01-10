@@ -4,9 +4,9 @@ class Restaurant < ApplicationRecord
     has_many :liking_users, through: :likes, source: :user
 
     validates :address, presence: true
-    validates :zipcode, presence: true
-    validates :name, presence: true, uniqueness: { scope: :address, :zipcode
-    message: "already exists" }
+    validates :zip_code, presence: true
+    validates :name, presence: true
+    validates :name, uniqueness: {scope: [:address, :zip_code]}
 
     extend FriendlyId
     friendly_id :name, :use => [:slugged]

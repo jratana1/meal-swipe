@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     before_action :require_no_session, only: [:new, :create]
 
     def index
-        #friends list
+        #sort by friends with matching restaurants
+        @friends = current_user.friends
     end
 
     def new
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.friendly.find_by_friendly_id(params[:id])
+
     end
 
     private
