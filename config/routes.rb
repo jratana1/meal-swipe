@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :likes
   resources :photos
-  resources :users
   resources :users do
     resources :restaurants
     resources :photos

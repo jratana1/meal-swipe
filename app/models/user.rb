@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
     validates :name, presence: true, :uniqueness => {:case_sensitive => false}
     validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-    validates :password, confirmation: true, length: { minimum: 8 }
-    validates :password_confirmation, presence: true
+    validates :password, confirmation: true, length: { minimum: 8 }, :if => :password
+    validates :password_confirmation, presence: true, :if => :password_confirmation
 
     extend FriendlyId
     friendly_id :name, :use => [:slugged]

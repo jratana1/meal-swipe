@@ -1,18 +1,3 @@
-<% if false %>
-<div class="container">
-<% if current_user == @user %>
-  <h3>Here are all the restaurants you want to eat at:</h3>
-<% else %>
-  <h3>Here are all the restaurants <%=@user.name%> wants to eat at:</h3>
-<% end %>
-    <ol>
-      <% @user.liked_restaurants.each do |restaurant| %>
-        <li><%= link_to restaurant.name, restaurant_path(restaurant)%> - <%=restaurant.liking_users.count%> friends</li>
-      <% end %>
-    </ol>
-</div>
-<%end%>
-
 <div class="row py-5 px-4">
     <div class="col-md-5 mx-auto">
         <!-- Profile widget -->
@@ -23,7 +8,8 @@
                           <div class="profile mr-3"><%= image_tag @user.image, class:"rounded mb-2 img-thumbnail" , alt:"Card image cap", size: '130'%>
                             <br>
                             <h4 class="mt-0 mb-0"><%=@user.name%></h4>
-                              <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
+                              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-dark btn-sm btn-block"%>
+                              </div>
                                 <ul class="list-inline p-2 d-flex justify-content-end">
                                     <li class="list-inline-item">
                                         <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.count%></h5><small class="text-muted"> <i class="fas fa-image mr-1"></i><%= link_to "Friends", users_path%></small>
