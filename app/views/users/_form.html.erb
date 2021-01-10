@@ -22,6 +22,15 @@
         <%= f.label :Profile_Picture %>
         <%= f.text_field :image %>
     </p>
+  
+    <% if !@user.new_record? %>
+    <p>
+    <h3>Change Password</h3>
+    <%= f.label :new_password %>
+    <%= f.password_field :new_password %>
+    </p>
+    <%end%>
+ 
     <p>
         <%= f.label :password %>
         <%= f.password_field :password %>
