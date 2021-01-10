@@ -32,7 +32,7 @@
                                         <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.count%></h5><small class="text-muted"> <i class="fas fa-user mr-1"></i><%= link_to "Photos", user_photos_path(@user)%></small>
                                     </li>
                                     <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.count%></h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Places</small>
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.count%></h5><small class="text-muted"> <i class="fas fa-user mr-1"></i><%= link_to "Places", user_restaurants_path(@user)%></small>
                                     </li>
                                 </ul>
                           </div> 
