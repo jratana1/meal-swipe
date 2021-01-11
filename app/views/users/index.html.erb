@@ -1,4 +1,16 @@
+<div class="container">
+  <%= form_tag(users_path, method: :get, class:"col-lg-6 offset-lg-3 ") do %>
+    <div class="row justify-content-center">
+      <span class="input-group-btn">
+        <%= text_field_tag(:search, params[:search], placeholder:"Search People") %>
+        <%= submit_tag("Search") %>
+      </span>
+      <% end %>
+    </div>
+</div>
+
 <div class="containter">
+
     <h2>Check out where your friends want to eat:</h2>
     <div class="card-deck">
       <% @friends.each do |friend| %>

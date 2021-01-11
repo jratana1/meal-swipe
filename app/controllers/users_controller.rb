@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
     def index
         #sort by friends with matching restaurants
-        @friends = current_user.friends
+        if params[:search] != ""
+            @friends = User.search(params[:search])
+        else
+            @friends = current_user.friends
+        end
     end
 
     def new
@@ -58,7 +62,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :password, :email, :image, :password_confirmation, :new_password)
+        params.require(:user).permit(:name, :password, :email, :image, :password_confirmation, :new_password, :search)
     end
 
     def skip_password_attribute?

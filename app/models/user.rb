@@ -14,4 +14,8 @@ class User < ApplicationRecord
     friendly_id :name, :use => [:slugged]
 
     attr_accessor :new_password
+
+    def self.search(search)      
+        User.where("lower(name) LIKE ?", "%" + search.downcase + "%")
+    end
 end
