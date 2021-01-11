@@ -4,11 +4,10 @@ class UsersController < ApplicationController
     before_action :belongs_current_user, only: [:edit, :update, :destroy]
 
     def index
-        #sort by friends with matching restaurants
-        if params[:search] != ""
-            @friends = User.search(params[:search])
-        else
+        if params[:search] == "" || params[:search] == nil
             @friends = current_user.friends
+        else
+            @friends = User.search(params[:search]) 
         end
     end
 
@@ -49,7 +48,6 @@ class UsersController < ApplicationController
         else
             render 'edit'
         end
-
     end
     
     def destroy

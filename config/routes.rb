@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   
+  resources :friends
   resources :restaurants
   resources :likes
   resources :photos
   resources :users do
     resources :restaurants
     resources :photos
+  
   end
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

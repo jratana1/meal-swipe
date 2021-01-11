@@ -33,9 +33,18 @@
               </ul>
           
             <div class="card-body">
-            <%=link_to "Profile", user_path(friend), class:"card-link"%>
+                <%=link_to "Profile", user_path(friend), class:"card-link"%>
+              <%if current_user.friends.exists?(friend.id) %>
+                <%=link_to "Unfriend", user_path(friend), class:"card-link"%>
+              <%else%>
+                  <%= form_for(:friend, class:"form-control", :url => { controller: 'friends', action: 'create', method: :post }) do |f| %> 
+                  <%= f.hidden_field :id, value: friend.id %>
+                  <span class="input-group-addon"><%= f.submit "Friend" %></span>
+                  <%end%>
+              <%end%>
             </div>
         </div>
       <% end %>
     </div>
 </div>
+
