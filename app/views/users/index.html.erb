@@ -1,22 +1,29 @@
 <div class="containter">
     <h2>Check out where your friends want to eat:</h2>
-<div class="card-columns">
-    <% @friends.each do |friend| %>
+    <div class="card-deck">
+      <% @friends.each do |friend| %>
+        
         <div class="card" style="width: 18rem;">
-        <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
+          <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
             <div class="card-body">
-                <h5 class="card-title"><%=friend.name%></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 class="card-title"><%=friend.name%></h5>
+                <ul class="list-group list-group-flush">
+                  <% friend.likes.last(2).each do |like| %>
+                    <li class="list-group-item"> <%= link_to like.restaurant.name, restaurant_path(like.restaurant), class:"card-link"%> </li>
+                  <%end%>
+                </ul>
+            </div>
+          
+              <ul class="list-group list-group-flush">
+              <% friend.liked_restaurants.where(id: current_user.liked_restaurants.pluck(:id)).limit(2).each do |restaurant| %>
+                <li class="list-group-item"> <%= link_to restaurant.name, restaurant_path(restaurant), class:"card-link"%> </li>
+              <%end%>
+              </ul>
+          
+            <div class="card-body">
+            <%=link_to "Profile", user_path(friend), class:"card-link"%>
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 </div>

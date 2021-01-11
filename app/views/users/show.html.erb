@@ -8,7 +8,9 @@
                           <div class="profile mr-3"><%= image_tag @user.image, class:"rounded mb-2 img-thumbnail" , alt:"Card image cap", size: '130'%>
                             <br>
                             <h4 class="mt-0 mb-0"><%=@user.name%></h4>
+                                <% if current_user == @user %>
                               <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-dark btn-sm btn-block"%>
+                                <% end %>
                               </div>
                                 <ul class="list-inline p-2 d-flex justify-content-end">
                                     <li class="list-inline-item">
@@ -29,13 +31,13 @@
                     <h5 class="mb-0">Restaurants:</h5>
                     <div class="p-4 rounded shadow-sm bg-light">
                       <% @user.liked_restaurants.each do |restaurant| %>
-                        <li><%= link_to restaurant.name, restaurant_path(restaurant)%> - <%=restaurant.liking_users.where(id: @user.friends.pluck(:id)).count%> friends</li>
+                        <li class="list-inline-item"><%= link_to restaurant.name, restaurant_path(restaurant)%> - <%=restaurant.liking_users.where(id: @user.friends.pluck(:id)).count%> friends</li>
                       <% end %>
                     </div>
                 </div>
                 <div class="py-4 px-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                        <h5 class="mb-0">Recent photos</h5><%= link_to "Show all", user_photos_path(@user), class:"btn btn-link text-muted"%>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"></div>

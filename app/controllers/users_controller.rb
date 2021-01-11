@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     before_action :require_no_session, only: [:new, :create]
+    before_action :belongs_current_user, only: [:edit, :update, :destroy]
 
     def index
         #sort by friends with matching restaurants
@@ -45,7 +46,14 @@ class UsersController < ApplicationController
             render 'edit'
         end
 
-	end
+    end
+    
+    def destroy
+        User.find_by_id(current_user.id).destroy
+        session.clear
+        flash[:notice] = "Your account has been deleted!"
+        redirect_to root_path
+    end
 
     private
 

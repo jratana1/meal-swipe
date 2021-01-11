@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
     def require_no_session
       redirect_to user_path(current_user) if session.include? :user_id
     end
+
+    def belongs_current_user
+      redirect_to user_path(current_user) if current_user.friendly_id != params[:id]
+    end
 end
