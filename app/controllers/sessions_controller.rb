@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
         @user = User.find_by_name(params[:user][:name]) 
         if @user && @user.authenticate(params[:user][:password])         
             session[:user_id] = @user.id
-           redirect_to user_path(@user)
+            flash[:alert] = "Welcome.  You've Successfully Logged-In."
+            redirect_to user_path(@user)
         elsif @user == nil
             flash[:alert] = "Error: User not found."
             redirect_to signin_path(@user)
