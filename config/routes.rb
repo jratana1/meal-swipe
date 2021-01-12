@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   
-  resources :friends
+  resources :friends, only: [:index, :update, :create, :destroy]
   resources :restaurants
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   resources :photos
   resources :users do
     resources :restaurants

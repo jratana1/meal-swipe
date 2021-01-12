@@ -14,8 +14,8 @@ class PhotosController < ApplicationController
     end
 
     def destroy
-        #nned to check photo belongs to current user
-        #need to hide delete button on other users pages.
+        #check photo belongs to current user
+        #hide delete button on other users pages.
         user = User.find_by_id(params[:user_id])
         photo = Photo.find_by_id(params[:id])
         photo.destroy
