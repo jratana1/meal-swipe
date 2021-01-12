@@ -1,20 +1,6 @@
-<div class="container">
-  <%= form_tag(users_path, method: :get, class:"col-lg-6 offset-lg-3 ") do %>
-    <div class="row justify-content-center">
-      <span class="input-group-btn">
-        <%= text_field_tag(:search, params[:search], placeholder:"Search People") %>
-        <%= submit_tag("Search") %>
-      </span>
-      <% end %>
-    </div>
-</div>
-
-<div class="containter">
-
-    
-    <div class="card-deck">
-      <% @friends.each do |friend| %>
-        
+<h2>Friend Requests:</h2>
+<div class="card-deck">
+      <% @friends.each do |friend| %>      
         <div class="card" style="width: 18rem;">
           <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
             <div class="card-body">
@@ -38,17 +24,15 @@
             <div class="card-body">
                 <%=link_to "Profile", user_path(friend), class:"card-link"%>
               
-              <% if current_user.friends.exists?(friend.id) %>
-                  <%= form_tag("/friends/#{friend.id}", method: :delete) do%>
+                  <%= form_tag("/friends/#{friend.id}", method: :patch) do%>
                   <%= hidden_field_tag :id, value: friend.id %>
-                  <span class="input-group-addon"><%= submit_tag "Unfriend" %></span>
+                  <span class="input-group-addon"><%= submit_tag "Accept Request" %></span>
                   <%end%>
-              <%else%>
-                  <%= form_for(:friend, :url => { controller: 'friends', action: 'create', method: :post }) do |f| %> 
-                  <%= f.hidden_field :id, value: friend.id %>
-                  <span class="input-group-addon"><%= f.submit "Friend" %></span>
+
+                  <%= form_tag("/friends/#{friend.id}", method: :patch) do%>
+                  <%= hidden_field_tag :id, value: friend.id %>
+                  <span class="input-group-addon"><%= submit_tag "Block Request" %></span>
                   <%end%>
-              <%end%>
             </div>
         </div>
       <% end %>

@@ -1,7 +1,6 @@
 class FriendsController < ApplicationController
     def index
-        #list pending friend
-        #list requested friends
+        @friends = current_user.requested_friends
     end
 
     def create 
@@ -12,12 +11,20 @@ class FriendsController < ApplicationController
     end
 
     def update
-        #add/reject pending
+        friend = User.find_by(id: params[:id])
+        
+        if params[:commit] == "Block Request"
+            current_user.block_friend(friend)
+            flash[:alert] = "You have blocked #{friend.name}."
+            redirect_to friends_path
+        else
+            current_user.accept_request(friend)
+            flash[:alert] = "You have friended #{friend.name}."
+            redirect_to friends_path
+        end
     end
 
     def destroy
-        #unfriend
-        byebug
         friend = User.find_by(id: params[:id])
         current_user.remove_friend(friend)
         flash[:alert] = "You have unfriended #{friend.name}."
