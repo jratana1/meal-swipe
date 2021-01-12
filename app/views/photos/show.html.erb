@@ -1,0 +1,2 @@
+<%=image_tag("#{@photo.url}", alt: "Yummy Food")%>
+<%= button_to 'Delete Photo', user_photo_path(@photo), method: :delete, data: { confirm: 'Are you sure?' } %>
