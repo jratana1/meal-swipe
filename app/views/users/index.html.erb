@@ -34,10 +34,14 @@
           
             <div class="card-body">
                 <%=link_to "Profile", user_path(friend), class:"card-link"%>
-              <%if current_user.friends.exists?(friend.id) %>
-                <%=link_to "Unfriend", user_path(friend), class:"card-link"%>
+              
+              <% if current_user.friends.exists?(friend.id) %>
+                  <%= form_tag("/friends/#{friend.id}", method: :delete) do%>
+                  <%= hidden_field_tag :id, value: friend.id %>
+                  <span class="input-group-addon"><%= submit_tag "Unfriend" %></span>
+                  <%end%>
               <%else%>
-                  <%= form_for(:friend, class:"form-control", :url => { controller: 'friends', action: 'create', method: :post }) do |f| %> 
+                  <%= form_for(:friend, :url => { controller: 'friends', action: 'create', method: :post }) do |f| %> 
                   <%= f.hidden_field :id, value: friend.id %>
                   <span class="input-group-addon"><%= f.submit "Friend" %></span>
                   <%end%>
