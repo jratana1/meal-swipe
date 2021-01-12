@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
     def index
-        @photos = current_user.photos
+        @photos = User.friendly.find_by_friendly_id(params[:user_id]).photos
     end
 
     def show
