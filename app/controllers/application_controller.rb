@@ -31,4 +31,9 @@ class ApplicationController < ActionController::Base
     def belongs_current_user
       redirect_to user_path(current_user) if current_user.friendly_id != params[:id]
     end
+    
+    def friends?
+      user = User.friendly.find_by_friendly_id(params[:user_id])
+      redirect_to user_path(current_user) if !current_user.friends_with?(user)
+    end
 end
