@@ -1,3 +1,14 @@
+<% if @photo.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+    <ul>   
+      <% @photo.errors.full_messages. each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>Post a Photo</h1>
 
 <%= form_for @photo  do |f| %>
@@ -8,7 +19,7 @@
   
   <%= f.fields_for :restaurant do |res| %>
     <%= res.label :restaurant_name %>
-    <%= res.text_field :id, list: "restaurants_autocomplete" %>
+    <%= res.text_field :name, list: "restaurants_autocomplete" %>
     <datalist id="restaurants_autocomplete">
         <% Restaurant.all.each do |restaurant| %>
         <option value="<%= restaurant.name %>">

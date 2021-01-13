@@ -31,7 +31,9 @@
                 </div>
                 
                 <div class="px-4 py-3">
-                    <h5 class="mb-0">Restaurants:</h5>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Liked Restaurants:</h5><%= link_to "Show all", user_restaurants_path(@user), class:"btn btn-link text-muted"%>
+                    </div>
                     <div class="p-4 rounded shadow-sm bg-light">
                       <% @user.liked_restaurants.each do |restaurant| %>
                         <li class="list-inline-item"><%= link_to restaurant.name, restaurant_path(restaurant)%> - <%=restaurant.liking_users.where(id: @user.friends.pluck(:id)).count%> friends</li>

@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
     def index
+        byebug
     end
 
     def show

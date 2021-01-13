@@ -1,9 +1,11 @@
 <div class="container">
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Photo Gallery</h1>
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"><%=@user.name%>'s Photo Gallery</h1>
 
   <hr class="mt-2 mb-5">
+  <% if current_user.id == @user.id %>
   <%=link_to "Add a Photo", new_photo_path, class:"btn btn-primary"%>
+  <% end %>
   <div class="row text-center text-lg-left">
     <% @photos.each do |photo| %>
         <div class="col-lg-3 col-md-4 col-6">
