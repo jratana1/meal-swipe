@@ -1,9 +1,0 @@
-<div class="container">
-<figure class="figure">
-    <%=image_tag("#{@photo.url}", alt: "Yummy Food", class:"figure-img img-fluid rounded")%>
-  <figcaption class="figure-caption text-right"><%= @photo.restaurant.name %></figcaption>
-</figure>
-<% if @photo.user_id == current_user.id %>
-<%= button_to 'Delete Photo', user_photo_path(@photo), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-</div>
