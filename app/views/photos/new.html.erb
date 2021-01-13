@@ -1,0 +1,33 @@
+<h1>Post a Photo</h1>
+
+<%= form_for @photo  do |f| %>
+  <%= f.label :Photo_url %>
+  <%= f.text_field :url %>
+  <br >
+  
+  
+  <%= f.fields_for :restaurant do |res| %>
+    <%= res.label :restaurant_name %>
+    <%= res.text_field :id, list: "restaurants_autocomplete" %>
+    <datalist id="restaurants_autocomplete">
+        <% Restaurant.all.each do |restaurant| %>
+        <option value="<%= restaurant.name %>">
+        <% end %>
+    </datalist>
+    <br>
+
+    <%= res.label :address %>
+    <%= res.text_field :address %><br>
+
+    <%= res.label :city %>
+    <%= res.text_field :city %><br>
+
+    <%= res.label :state %>
+    <%= res.text_field :state %><br>
+
+    <%= res.label :zip_code %>
+    <%= res.text_field :zip_code %><br>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
