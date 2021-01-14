@@ -10,7 +10,7 @@
                             <h4 class="mt-0 mb-0"><%=@restaurant.name%></h4>
                                 <div class="d-flex align-items-start justify-content-between mb-3">
                                 <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block d-flex justify-content-start">line1</h5><small class="text-muted d-flex justify-content-start"> "Friends"</small><small class="text-muted d-flex justify-content-start"> "line3"</small>
+                                        <small class=" d-flex justify-content-start"><%=@restaurant.address%></small><small class="d-flex justify-content-start"><%="#{@restaurant.city}, #{@restaurant.state} #{@restaurant.zip_code}"%></small>
                                     </li>
                                     <li class="list-inline-item">
                                         <%= link_to "Edit Restaurant Info", edit_restaurant_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block d-flex justify-content-end"%>
