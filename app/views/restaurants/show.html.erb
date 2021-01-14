@@ -13,7 +13,11 @@
                                     </div>
                                     <div>
                                         <div class="btn-group" role="group" >
+                                            <% if current_user.liked_restaurants.include?(@restaurant)%>
+                                            <%= link_to "Unlike", restaurant_unlike_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
+                                            <%else%>
                                             <%= button_to "Like", restaurant_likes_path(@restaurant), method: :post, class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
+                                            <%end%>
                                             <%= button_to "Add Photo", new_restaurant_photo_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block mx-1"%>
                                         </div>
                                     </div>

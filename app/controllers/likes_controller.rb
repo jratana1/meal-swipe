@@ -1,14 +1,14 @@
 class LikesController < ApplicationController
     def create
-        byebug
-        like = Like.create(like_params)
+        restaurant = Restaurant.friendly.find_by_friendly_id(params[:restaurant_id])
+        like = Like.create(user_id:current_user.id, restaurant_id:restaurant.id)
         flash[:notice] = "You now like #{like.restaurant.name}."
         redirect_to restaurant_path(like.restaurant)
     end
 
     def destroy
-      like = current_user.likes.find_by(restaurant_id: params[:like][:restaurant_id])
-
+      restaurant = Restaurant.friendly.find_by_friendly_id(params[:restaurant_id])
+      like = current_user.likes.find_by(restaurant_id: restaurant.id)
       if like != nil     
           flash[:notice] = "You have unliked #{like.restaurant.name}."
           like.destroy

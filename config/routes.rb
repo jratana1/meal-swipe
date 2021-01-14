@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :friends, only: [:index, :update, :create, :destroy]
   resources :restaurants do
     resources :photos
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create]
+    get '/unlike' => 'likes#destroy'
   end
   resources :photos
   resources :users do
