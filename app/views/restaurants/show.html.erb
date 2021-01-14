@@ -1,0 +1,57 @@
+<div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-4 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                        <div class="bg-light p-4 d-flex justify-content-start text-center">
+                          <div class="profile mr-3"><%= image_tag @restaurant.image_url, class:"rounded mb-2 img-thumbnail" , alt:"Card image cap", size: '130'%>
+                            <br>
+                            <h4 class="mt-0 mb-0"><%=@restaurant.name%></h4>
+                              <%= link_to "Edit Restaurant Info", edit_restaurant_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block"%>
+                              </div>
+                                <% if false %>
+                                <ul class="list-inline p-2 d-flex justify-content-end">
+                                    <li class="list-inline-item">
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.count%></h5><small class="text-muted"> <i class="fas fa-image mr-1"></i><%= link_to "Friends", users_path%></small>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.requested_friends.count%></h5><small class="text-muted"> <i class="fas fa-image mr-1"></i><%= link_to "Pending", friends_path%></small>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.count%></h5><small class="text-muted"> <i class="fas fa-user mr-1"></i><%= link_to "Photos", user_photos_path(@user)%></small>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.count%></h5><small class="text-muted"> <i class="fas fa-user mr-1"></i><%= link_to "Places", user_restaurants_path(@user)%></small>
+                                    </li>
+                                </ul>
+                                <%end%>
+                          </div> 
+                        </div>
+                </div>
+                
+                <div class="px-4 py-3">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Friends want to eat here:</h5>
+                    </div>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                      <% @restaurant.liking_users.where(id: current_user.friends.pluck(:id)).each do |friend| %>
+                        <li class="list-inline-item"><%= link_to friend.name, user_path(friend)%></li>
+                      <% end %>
+                    </div>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">Photos</h5><%= link_to "Show all", restaurant_photos_path(@restaurant), class:"btn btn-link text-muted"%>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"></div>
+                        <div class="col-lg-6 mb-2 pl-lg-1"><img src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"></div>
+                        <div class="col-lg-6 pr-lg-1 mb-2"><img src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" class="img-fluid rounded shadow-sm"></div>
+                        <div class="col-lg-6 pl-lg-1"><img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
