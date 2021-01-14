@@ -1,3 +1,11 @@
-<h1>Welcome to MealSwipe</h1>
-<%=link_to "Create New Account", new_user_path%>
-<%=link_to "Sign In", signin_path%>
+
+
+<div class="container">
+     <div class="d-flex justify-content-center">
+        <h1>Welcome to MealSwipe</h1>
+    </div>
+    <div class="d-flex justify-content-center" role="group">
+            <%=link_to "Create New Account", new_user_path, class:"btn btn-primary mx-2"%>
+            <%=link_to "Sign In", signin_path, class:"btn btn-primary mx-2"%>
+    </div>
+</div>
