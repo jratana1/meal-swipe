@@ -7,21 +7,30 @@
                         <div class="bg-light p-4 d-flex justify-content-start text-center">
                           <div class="profile mr-3"><%= image_tag @restaurant.image_url, class:"rounded mb-2 img-fluid" , alt:"Card image cap", size: "100%"%>
                             <br>
-                            <h4 class="mt-0 mb-0"><%=@restaurant.name%></h4>
-                                <div class="d-flex align-items-start justify-content-between mb-3">
-                                <li class="list-inline-item">
-                                        <small class=" d-flex justify-content-start"><%=@restaurant.address%></small>
-                                        <small class="d-flex justify-content-start"><%="#{@restaurant.city}, #{@restaurant.state} #{@restaurant.zip_code}"%></small>
-                                        <small class=" d-flex justify-content-start"><%=@restaurant.display_phone%></small>
-                                        <small class=" d-flex justify-content-start"><%=link_to "#{@restaurant.name}'s yelp page", @restaurant.url%></small>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <%= link_to "Edit Restaurant Info", edit_restaurant_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block d-flex justify-content-end"%>
-                                        <br>
-                                        <%= link_to "Add Photo", new_restaurant_photo_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block "%>
-                                    </li>
-                                    </ul>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h4 class="mt-0 mb-0 d-flex float-left"><%=@restaurant.name%></h4>
+                                    </div>
+                                    <div>
+                                        <div class="btn-group" role="group" >
+                                            <%= button_to "Like", restaurant_likes_path(@restaurant), method: :post, class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
+                                            <%= button_to "Add Photo", new_restaurant_photo_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block mx-1"%>
+                                        </div>
+                                    </div>
                                 </div>
+                                <br>                            
+                                    <div class="d-flex align-items-start justify-content-between mb-3">
+                                
+                                    <li class="list-inline-item">
+                                            <small class=" d-flex justify-content-start"><%=@restaurant.address%></small>
+                                            <small class="d-flex justify-content-start"><%="#{@restaurant.city}, #{@restaurant.state} #{@restaurant.zip_code}"%></small>
+                                            <small class=" d-flex justify-content-start"><%=@restaurant.display_phone%></small>
+                                            <small class=" d-flex justify-content-start"><%=link_to "#{@restaurant.name}'s yelp page", @restaurant.url%></small>
+                                            <br>
+                                            <%= link_to "Edit Restaurant Info", edit_restaurant_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block "%>
+                                    </li>
+                                
+                                    </div>
                           </div> 
                         </div>
                 </div>

@@ -12,7 +12,7 @@
                               <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-dark btn-sm btn-block"%>
                                 <% end %>
                               </div>
-                                <ul class="list-inline p-2 d-flex justify-content-end">
+                                <ul class="list-inline p-2 d-flex justify-content-">
                                     <li class="list-inline-item">
                                         <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.count%></h5><small class="text-muted"> <i class="fas fa-image mr-1"></i><%= link_to "Friends", users_path%></small>
                                     </li>

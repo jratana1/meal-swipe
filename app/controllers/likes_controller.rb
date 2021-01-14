@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
     def create
+        byebug
         like = Like.create(like_params)
         flash[:notice] = "You now like #{like.restaurant.name}."
         redirect_to restaurant_path(like.restaurant)

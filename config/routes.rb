@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :friends, only: [:index, :update, :create, :destroy]
   resources :restaurants do
     resources :photos
+    resources :likes, only: [:create, :destroy]
   end
-  resources :likes, only: [:create, :destroy]
   resources :photos
   resources :users do
     resources :restaurants, only: [:index]
