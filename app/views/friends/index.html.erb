@@ -1,27 +1,31 @@
-<h2>Friend Requests:</h2>
-<div class="card-deck">
-      <% @friends.each do |friend| %>      
-        <div class="card" style="width: 18rem;">
-          <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
-            <div class="card-body">
-              <h5 class="card-title"><%=friend.name%></h5>
-                
+<div class="container">
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Friend Requests:</h1>
+  <hr class="mt-2 mb-5">
+  <div class="row text-center text-lg-left">
+    
+    <% @friends.each do |friend| %> 
+        <div class="col-lg-3 col-md-4 col-6 mt-5">
+          <div class="card" style="width: 18rem;">
+            <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
+              <div class="card-body">
+                <h5 class="card-title"><%=friend.name%></h5>
+                  
+                  <ul class="list-group list-group-flush">
+                    <h6 class="card-title">Recent Activity</h6>
+                    <% friend.likes.last(2).each do |like| %>
+                      <li class="list-group-item"> <%= link_to like.restaurant.name, restaurant_path(like.restaurant), class:"card-link"%> </li>
+                    <%end%>
+                  </ul>
+              </div>
+            
                 <ul class="list-group list-group-flush">
-                  <h6 class="card-title">Recent Activity</h6>
-                  <% friend.likes.last(2).each do |like| %>
-                    <li class="list-group-item"> <%= link_to like.restaurant.name, restaurant_path(like.restaurant), class:"card-link"%> </li>
-                  <%end%>
+                <h6 class="card-title">Restaurant Matches</h6>
+                <% friend.liked_restaurants.where(id: current_user.liked_restaurants.pluck(:id)).limit(2).each do |restaurant| %>
+                  <li class="list-group-item"> <%= link_to restaurant.name, restaurant_path(restaurant), class:"card-link"%> </li>
+                <%end%>
                 </ul>
-            </div>
-          
-              <ul class="list-group list-group-flush">
-              <h6 class="card-title">Restaurant Matches</h6>
-              <% friend.liked_restaurants.where(id: current_user.liked_restaurants.pluck(:id)).limit(2).each do |restaurant| %>
-                <li class="list-group-item"> <%= link_to restaurant.name, restaurant_path(restaurant), class:"card-link"%> </li>
-              <%end%>
-              </ul>
-          
-            <div class="card-body">
+              
+                <div class="card-body">
                 <%=link_to "Profile", user_path(friend), class:"card-link"%>
               
                   <%= form_tag("/friends/#{friend.id}", method: :patch) do%>
@@ -34,8 +38,8 @@
                   <span class="input-group-addon"><%= submit_tag "Block Request" %></span>
                   <%end%>
             </div>
+          </div>
         </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 </div>
-
