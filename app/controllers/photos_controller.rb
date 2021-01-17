@@ -5,7 +5,6 @@ class PhotosController < ApplicationController
     end
 
     def show
-        #add back button to view
         @photo = Photo.find_by_id(params[:id])
     end
 

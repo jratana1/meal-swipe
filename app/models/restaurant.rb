@@ -10,4 +10,8 @@ class Restaurant < ApplicationRecord
 
     extend FriendlyId
     friendly_id :name, :use => [:slugged]
+
+    def display_address(restaurant)
+        
+    end
 end
