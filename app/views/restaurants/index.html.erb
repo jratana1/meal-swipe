@@ -1,6 +1,7 @@
 <div class="container">
   <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Restaurants</h1>
   <hr class="mt-2 mb-5">
+  <%=link_to "Add a Restaurant", new_restaurant_path, class:"btn btn-primary"%>
   <div class="row text-center text-lg-left">
     
     <% @restaurants.each do |restaurant| %> 
@@ -11,7 +12,9 @@
                 <h5 class="card-title"><%=restaurant.name%></h5>
                   
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> <%= restaurant.address %></li>
+                    <li class="list-group-item"> <%= restaurant.address %><br>
+                    <%= "#{restaurant.city}, #{restaurant.state} #{restaurant.zip_code}" %><br>
+                    <%= restaurant.display_phone %></li> 
                   </ul>
               </div>
             
