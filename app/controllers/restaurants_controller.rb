@@ -15,6 +15,7 @@ class RestaurantsController < ApplicationController
     def new
         @restaurant = Restaurant.new
         @restaurant.photos.build
+        @action = params[:action]
     end
 
     def create
@@ -29,10 +30,19 @@ class RestaurantsController < ApplicationController
         end
     end
 
-    def edit
+    def edit  
+        @restaurant = Restaurant.friendly.find_by_friendly_id(params[:id])
+        @action = params[:action]
     end
 
     def update
+        @restaurant = Restaurant.friendly.find_by_friendly_id(params[:id])
+        if @restaurant.update(restaurant_params)
+            flash[:alert] = "Restaurant information successfully updated."
+            redirect_to restaurant_path(@restaurant)
+        else
+            render 'edit'
+        end
     end
 
     def destroy

@@ -24,11 +24,13 @@
 
     <%= f.label :zip_code %>
     <%= f.text_field :zip_code %><br>
-      
+    
+    <% if @action == "new" %>
     <%= f.fields_for :photos do |photo| %>
       <%= photo.label :Photo_url %>
       <%= photo.text_field :url%>
     <%end%>
     <br>
+    <%end%>
     <%= f.submit %>
   <% end %>
