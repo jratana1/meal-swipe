@@ -11,6 +11,8 @@ class Restaurant < ApplicationRecord
     extend FriendlyId
     friendly_id :name, :use => [:slugged]
 
+    accepts_nested_attributes_for :photos
+
     def display_address(restaurant)
         
     end

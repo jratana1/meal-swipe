@@ -1,14 +1,11 @@
 # README
 
 To do list:
-* style restaurant index
-* add link to restaurant index
 * create restaurant form with nested photo
 * swipe function
 * restaurant edit form
 * admin features
 * business owner feature
-* back button?
 * add google oauth?
 * more search bars?
 * filter bar for restaurants and users?

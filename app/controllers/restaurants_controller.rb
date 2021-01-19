@@ -17,6 +17,15 @@ class RestaurantsController < ApplicationController
     end
 
     def create
+        byebug
+        @restaurant = Restaurant.new(restaurant_params)
+        
+        if @restaurant.save
+            flash[:alert] = "You have added a new restaurant."
+            redirect_to restaurant_path(@restaurant)
+        else
+            render 'new'
+        end
     end
 
     def edit
@@ -26,5 +35,10 @@ class RestaurantsController < ApplicationController
     end
 
     def destroy
+    end
+
+    private
+    def restaurant_params
+        params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, :photo)
     end
 end

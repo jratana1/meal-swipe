@@ -2,6 +2,7 @@
   <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Restaurants</h1>
   <hr class="mt-2 mb-5">
   <%=link_to "Add a Restaurant", new_restaurant_path, class:"btn btn-primary"%>
+  <%= link_to "Show all", restaurants_path, class:"btn btn-link text-muted"%>
   <div class="row text-center text-lg-left">
     
     <% @restaurants.each do |restaurant| %> 
