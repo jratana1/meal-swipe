@@ -42,7 +42,6 @@ class Restaurant < ApplicationRecord
       url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}/reviews"
       response = HTTP.auth("Bearer #{ENV['API_KEY']}").get(url)
       response.parse
-      # response.parse["reviews"]
     end
     
     def self.api_business(business_id)

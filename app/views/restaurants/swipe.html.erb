@@ -1,1 +1,16 @@
 Swipe here
+<div class="container">
+  <%= form_tag(swipe_path, method: :get, class:"col-lg-6 offset-lg-3 ") do %>
+    <div class="row justify-content-center">
+      <span class="input-group-btn">
+        <%= text_field_tag(:location, params[:location], placeholder:"Enter City or Zipcode") %>
+        <%= submit_tag("Swipe") %>
+      </span>
+      <% end %>
+    </div>
+</div>
+<div class="container">
+<figure class="figure">
+    <%=image_tag("#{@photo.url}", alt: "Yummy Food", class:"figure-img img-fluid rounded")%>
+</figure>
+</div>
