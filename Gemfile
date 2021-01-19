@@ -11,6 +11,9 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'pry-rails', :group => :development
 gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'jquery-rails'
+gem "json"
+gem "http"
+gem "optparse"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
