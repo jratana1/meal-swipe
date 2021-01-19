@@ -9,8 +9,15 @@ class PhotosController < ApplicationController
     end
 
     def new
-        @photo = Photo.new
-        @photo.build_restaurant
+        
+        if params[:restaurant_id]
+            @restaurant = Restaurant.friendly.find_by_friendly_id(params[:restaurant_id])
+            @photo = Photo.new
+            @photo.restaurant = @restaurant
+        else    
+            @photo = Photo.new
+            @photo.build_restaurant
+        end
     end
 
     def create

@@ -9,7 +9,6 @@ To do list:
 * admin features
 * business owner feature
 * back button?
-* friends index and user index pages feel wierd?
 * add google oauth?
 * more search bars?
 * filter bar for restaurants and users?

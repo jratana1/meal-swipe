@@ -1,0 +1,46 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>   
+      <% @user.errors.full_messages. each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @restaurant do |f|%>
+    <p>
+        <%= f.label :Username %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+    </p>
+    <p>
+        <%= f.label :Profile_Picture %>
+        <%= f.text_field :image %>
+    </p>
+  
+    <% if !@user.facebook_id %>
+      <% if !@user.new_record? %>
+        <p>
+        <h3>Change Password</h3>
+        <%= f.label :new_password %>
+        <%= f.password_field :new_password %>
+        </p>
+      <%end%>
+  
+      <p>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+      </p>
+      <p>
+          <%=f.label :password_confirmation %>
+          <%=f.password_field :password_confirmation%>
+      </p>
+    <%end%>
+    
+      <%= f.submit %>
+<% end %>

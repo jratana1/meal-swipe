@@ -18,7 +18,7 @@
                                             <%else%>
                                             <%= button_to "Like", restaurant_likes_path(@restaurant), method: :post, class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
                                             <%end%>
-                                            <%= button_to "Add Photo", new_restaurant_photo_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block mx-1"%>
+                                            <%= link_to "Add Photo", new_restaurant_photo_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block mx-1"%>
                                         </div>
                                     </div>
                                 </div>
