@@ -14,12 +14,13 @@ class RestaurantsController < ApplicationController
 
     def new
         @restaurant = Restaurant.new
+        @restaurant.photos.build
     end
 
     def create
-        byebug
         @restaurant = Restaurant.new(restaurant_params)
-        
+        @restaurant.photos.build(url:restaurant_params[:photos_attributes]["0"][:url], user_id:current_user.id)
+        @restaurant.image_url = @restaurant.photos.last.url
         if @restaurant.save
             flash[:alert] = "You have added a new restaurant."
             redirect_to restaurant_path(@restaurant)
@@ -74,6 +75,6 @@ class RestaurantsController < ApplicationController
 
     private
     def restaurant_params
-        params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, :photo)
+        params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, photos_attributes:[:url])
     end
 end
