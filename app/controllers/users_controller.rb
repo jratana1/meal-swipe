@@ -56,6 +56,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Your account has been deleted!"
         redirect_to root_path
     end
+    
 
     private
 

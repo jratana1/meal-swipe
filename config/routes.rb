@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  
+  get '/swipe' => 'restaurants#swipe'
+   
   resources :friends, only: [:index, :update, :create, :destroy]
   resources :restaurants do
     resources :photos

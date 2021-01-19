@@ -37,6 +37,41 @@ class RestaurantsController < ApplicationController
     def destroy
     end
 
+    def swipe
+        # if params.key?(:location)
+        #     session[:location] = params[:location]
+        #     results = YelpApiAdapter.search(params[:location])
+        #     results.each do |restaurant|
+        #         @rest_hash = Helpers.yelp_hash_converter(restaurant)
+        #         if @rest_hash[:image_url]         
+        #           restaurant = Restaurant.create_with(@rest_hash).find_or_create_by(yelp_id: @rest_hash[:yelp_id])
+        #           restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0).find_or_create_by(url: restaurant.image_url)
+        #         end
+        #     end
+        #   else
+        #     # session[:location]= "all"
+        #   end
+          
+          
+        #     if params[:swipe] == "Swipe Right"
+        #       @swipe = "right"
+        #       @photo = Photo.find(params[:photo][:id])
+        #       @photo.rightswipes += 1
+        #       @photo.save
+        #       @restaurant = Restaurant.find(@photo.restaurant_id)
+        #       Like.create(restaurant_id:@restaurant.id, user_id:session[:user_id])
+        #       flash.now[:notice] = "You liked #{@restaurant.name}!"    
+        #     elsif params[:swipe] == "Swipe Left"
+        #       @photo = Photo.find(params[:photo][:id])
+        #       @photo.leftswipes += 1
+        #       @photo.save
+        #       @photo = Photo.all.select {|photo| Helpers.slug_string(photo.restaurant.city) == Helpers.slug_string(session[:location])}.sample   
+        #     else     
+        #       @photo = Photo.all.select {|photo| Helpers.slug_string(photo.restaurant.city) == Helpers.slug_string(session[:location])}.sample       
+        #     end  
+        #     erb :"/swipe"
+    end
+
     private
     def restaurant_params
         params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, :photo)
