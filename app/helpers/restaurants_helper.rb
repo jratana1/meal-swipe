@@ -7,4 +7,5 @@ module RestaurantsHelper
             end
         end
     end
+      
 end

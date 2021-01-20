@@ -48,8 +48,7 @@ class RestaurantsController < ApplicationController
     def destroy
     end
 
-    def swipe
-        
+    def swipe    
         if params.key?(:location)
             session[:location] = params[:location]
             results = Restaurant.api_search(params[:location])
@@ -68,20 +67,15 @@ class RestaurantsController < ApplicationController
         end
 
             if params[:swipe] == "right"
-              photo = Photo.find(params[:photo_id])
-              photo.rightswipes += 1
-              photo.save
-              restaurant = Restaurant.find(photo.restaurant_id)
-              Like.create(restaurant_id:restaurant.id, user_id:session[:user_id])
-              flash[:alert] = "You liked #{restaurant.name}!"
-              redirect_to restaurant_path(restaurant)   
+                swiper(params[:swipe], params[:photo_id])
+                restaurant = Restaurant.find(@photo.restaurant_id)
+                Like.create(restaurant_id:restaurant.id, user_id:session[:user_id])
+                flash[:alert] = "You liked #{restaurant.name}!"
+                redirect_to restaurant_path(restaurant)   
             elsif params[:swipe] == "left"
-              photo = Photo.find(params[:photo_id])
-              photo.leftswipes += 1
-              photo.save   
-              @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
+                swiper(params[:swipe], params[:photo_id])
+                @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
             end  
-            byebug
     end
 
     private
