@@ -68,7 +68,6 @@ class RestaurantsController < ApplicationController
             
             @photo = Photo.all.sample
         end
-        byebug
           
             # if params[:swipe] == "Swipe Right"
             #   @swipe = "right"
