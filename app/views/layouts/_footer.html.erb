@@ -15,8 +15,7 @@
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
           <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
           <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">For Women</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">For Men</a></li>
+            <li class="mb-2"><%= link_to "Swipe", swipe_path, class:"text-muted"%></li>
             <li class="mb-2"><a href="#" class="text-muted">Stores</a></li>
             <li class="mb-2"><a href="#" class="text-muted">Our Blog</a></li>
           </ul>
@@ -24,9 +23,8 @@
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
           <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
           <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Wishlist</a></li>
+            <li class="mb-2"><%= link_to "Log-in", signin_path, class:"text-muted"%></li>
+            <li class="mb-2"><%= link_to "Sign-up", new_user_path, class:"text-muted"%></li>
             <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
           </ul>
         </div>
@@ -48,7 +46,7 @@
     <!-- Copyrights -->
     <div class="bg-light py-4">
       <div class="container text-center">
-        <p class="text-muted mb-0 py-2">© 2019 Bootstrapious All rights reserved.</p>
+        <p class="text-muted mb-0 py-2">© 2020 MealSwipe All rights reserved.</p>
       </div>
     </div>
   </footer>
