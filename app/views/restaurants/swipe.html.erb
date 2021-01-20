@@ -1,4 +1,4 @@
-Swipe here
+
 <div class="container">
   <%= form_tag(swipe_path, method: :get, class:"col-lg-6 offset-lg-3 ") do %>
     <div class="row justify-content-center">
@@ -9,8 +9,13 @@ Swipe here
       <% end %>
     </div>
 </div>
+<br>
 <div class="container">
 <figure class="figure">
     <%=image_tag("#{@photo.url}", alt: "Yummy Food", class:"figure-img img-fluid rounded")%>
 </figure>
+<br>
+<%= link_to 'Swipe Left', swipe_path(swipe: "left"), class:"btn btn-primary" %> 
+<%= link_to 'Swipe Right', swipe_path(swipe: "right"), class:"btn btn-primary" %> 
 </div>
+

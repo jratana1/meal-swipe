@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
     end
 
     def swipe
-        byebug
+        
         if params.key?(:location)
             session[:location] = params[:location]
             results = Restaurant.api_search(params[:location])
@@ -57,13 +57,18 @@ class RestaurantsController < ApplicationController
                 @rest_hash = Restaurant.yelp_hash_converter(restaurant)
                 if @rest_hash[:image_url]         
                   restaurant = Restaurant.create_with(@rest_hash).find_or_create_by(yelp_id: @rest_hash[:yelp_id])
-                  restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0).find_or_create_by(url: restaurant.image_url)
+                  restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0, user_id:1).find_or_create_by(url: restaurant.image_url)
                 end
-            end
+            end       
+            @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + params[:location] + "%").sample.photos.sample
+        elsif session[:location]
+            
+            @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
         else
-            # session[:location]= "all"
+            
+            @photo = Photo.all.sample
         end
-          
+        byebug
           
             # if params[:swipe] == "Swipe Right"
             #   @swipe = "right"
