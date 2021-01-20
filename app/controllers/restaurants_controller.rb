@@ -61,30 +61,27 @@ class RestaurantsController < ApplicationController
                 end
             end       
             @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + params[:location] + "%").sample.photos.sample
-        elsif session[:location]
-            
+        elsif session[:location]          
             @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
-        else
-            
+        else        
             @photo = Photo.all.sample
         end
-          
-            # if params[:swipe] == "Swipe Right"
-            #   @swipe = "right"
-            #   @photo = Photo.find(params[:photo][:id])
-            #   @photo.rightswipes += 1
-            #   @photo.save
-            #   @restaurant = Restaurant.find(@photo.restaurant_id)
-            #   Like.create(restaurant_id:@restaurant.id, user_id:session[:user_id])
-            #   flash.now[:notice] = "You liked #{@restaurant.name}!"    
-            # elsif params[:swipe] == "Swipe Left"
-            #   @photo = Photo.find(params[:photo][:id])
-            #   @photo.leftswipes += 1
-            #   @photo.save
-            #   @photo = Photo.all.select {|photo| Helpers.slug_string(photo.restaurant.city) == Helpers.slug_string(session[:location])}.sample   
-            # else     
-            #   @photo = Photo.all.select {|photo| Helpers.slug_string(photo.restaurant.city) == Helpers.slug_string(session[:location])}.sample       
-            # end  
+
+            if params[:swipe] == "right"
+              photo = Photo.find(params[:photo_id])
+              photo.rightswipes += 1
+              photo.save
+              restaurant = Restaurant.find(photo.restaurant_id)
+              Like.create(restaurant_id:restaurant.id, user_id:session[:user_id])
+              flash[:alert] = "You liked #{restaurant.name}!"
+              redirect_to restaurant_path(restaurant)   
+            elsif params[:swipe] == "left"
+              photo = Photo.find(params[:photo_id])
+              photo.leftswipes += 1
+              photo.save   
+              @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
+            end  
+            byebug
     end
 
     private

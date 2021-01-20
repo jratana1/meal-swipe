@@ -15,7 +15,7 @@
     <%=image_tag("#{@photo.url}", alt: "Yummy Food", class:"figure-img img-fluid rounded")%>
 </figure>
 <br>
-<%= link_to 'Swipe Left', swipe_path(swipe: "left"), class:"btn btn-primary" %> 
-<%= link_to 'Swipe Right', swipe_path(swipe: "right"), class:"btn btn-primary" %> 
+<%= link_to 'Swipe Left', swipe_path(swipe: "left", photo_id: "#{@photo.id}"), class:"btn btn-primary" %> 
+<%= link_to 'Swipe Right', swipe_path(swipe: "right", photo_id: "#{@photo.id}"), class:"btn btn-primary" %> 
 </div>
 
