@@ -18,6 +18,9 @@
             <%=link_to "Profile", user_path(current_user), class: "nav-link"%>
         </li>
         <li class="nav-item">
+            <%=link_to "Add Photo", new_user_photo_path(current_user), class: "nav-link"%>
+        </li>
+        <li class="nav-item">
             <%=link_to "Sign Out", logout_path, class: "nav-link"%>
         </li>
       </ul>
