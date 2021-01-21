@@ -14,16 +14,16 @@
                               </div>
                                 <ul class="list-inline p-2 d-flex justify-content-">
                                     <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.count%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Friends", users_path%></small>
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Friends", users_path%></small>
                                     </li>
                                     <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.requested_friends.count%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Pending", friends_path%></small>
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.requested_friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Pending", friends_path%></small>
                                     </li>
                                     <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.count%></h5><small class="text-muted"><i class="fa fa-image mr-1"></i><br><%= link_to "Photos", user_photos_path(@user)%></small>
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.size%></h5><small class="text-muted"><i class="fa fa-image mr-1"></i><br><%= link_to "Photos", user_photos_path(@user)%></small>
                                     </li>
                                     <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.count%></h5><small class="text-muted"><i class="fa fa-utensils mr-1"></i><br><%= link_to "Places", user_restaurants_path(@user)%></small>
+                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.size%></h5><small class="text-muted"><i class="fa fa-utensils mr-1"></i><br><%= link_to "Places", user_restaurants_path(@user)%></small>
                                     </li>
                                 </ul>
                           </div> 
