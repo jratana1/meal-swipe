@@ -58,10 +58,11 @@ class RestaurantsController < ApplicationController
                   restaurant = Restaurant.create_with(@rest_hash).find_or_create_by(yelp_id: @rest_hash[:yelp_id])
                   restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0, user_id:1).find_or_create_by(url: restaurant.image_url)
                 end
-            end       
-            @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + params[:location] + "%").sample.photos.sample
-        elsif session[:location]          
-            @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
+            end   
+            byebug    
+            @photo = Photo.swipe_photo_search(params[:location])
+        elsif session[:location]        
+            @photo = Photo.swipe_photo_search(session[:location])
         else        
             @photo = Photo.all.sample
         end
@@ -74,7 +75,7 @@ class RestaurantsController < ApplicationController
                 redirect_to restaurant_path(restaurant)   
             elsif params[:swipe] == "left"
                 swiper(params[:swipe], params[:photo_id])
-                @photo = Restaurant.where("lower(city) LIKE lower(?)", "%" + session[:location] + "%").sample.photos.sample
+                @photo = Photo.swipe_photo_search(session[:location])
             end  
     end
 
