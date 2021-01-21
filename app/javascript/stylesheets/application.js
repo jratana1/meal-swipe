@@ -5,7 +5,7 @@
 // import 'core-js/stable'
 // import 'regenerator-runtime/runtime'
 import 'bootstrap';
-import '../stylesheets/application'
+import './application'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
