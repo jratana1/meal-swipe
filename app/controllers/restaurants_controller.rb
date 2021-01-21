@@ -58,8 +58,7 @@ class RestaurantsController < ApplicationController
                   restaurant = Restaurant.create_with(@rest_hash).find_or_create_by(yelp_id: @rest_hash[:yelp_id])
                   restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0, user_id:1).find_or_create_by(url: restaurant.image_url)
                 end
-            end   
-            byebug    
+            end      
             @photo = Photo.swipe_photo_search(params[:location])
         elsif session[:location]        
             @photo = Photo.swipe_photo_search(session[:location])
