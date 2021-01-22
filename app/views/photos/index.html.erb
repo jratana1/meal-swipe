@@ -1,9 +1,9 @@
 <div class="container">
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"><%=@user.name%>'s Photo Gallery</h1>
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"><%=@display.name%>'s Photo Gallery</h1>
 
   <hr class="mt-2 mb-5">
-  <% if current_user.id == @user.id %>
+  <% if current_user.id == @display.id %>
   <%=link_to "Add a Photo", new_photo_path, class:"btn btn-primary"%>
   <% end %>
   <div class="row text-center text-lg-left">
@@ -11,7 +11,7 @@
         <div class="col-lg-3 col-md-4 col-6">
           <figure class="figure">  
             <%= link_to image_tag("#{photo.url}", class:"img-fluid img-thumbnail", alt:""), user_photo_path(photo.user, photo), class:"d-block mb-4 h-100" %>
-            <figcaption class="figure-caption"><%= photo.restaurant.name %></figcaption>
+            <figcaption class="figure-caption"><%= link_to "#{photo.restaurant.name}", restaurant_path(photo.restaurant) %></figcaption>
           </figure>
         </div>
     <% end %>

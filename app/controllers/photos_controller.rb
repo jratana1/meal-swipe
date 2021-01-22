@@ -1,7 +1,13 @@
 class PhotosController < ApplicationController
     def index
-        @user = User.friendly.find_by_friendly_id(params[:user_id])
-        @photos = @user.photos
+        
+        if params[:restaurant_id]
+            @display = Restaurant.friendly.find_by_friendly_id(params[:restaurant_id])
+            @photos = @display.photos
+        else
+            @display = User.friendly.find_by_friendly_id(params[:user_id])
+            @photos = @display.photos
+        end
     end
 
     def show

@@ -13,6 +13,7 @@
                                     </div>
                                     <div>
                                         <div class="btn-group" role="group" >
+                                            <%= link_to "Swipe More", swipe_path , class:"btn btn-outline-dark btn-sm btn-block mx-1"%>
                                             <% if current_user.liked_restaurants.include?(@restaurant)%>
                                             <%= link_to "Unlike", restaurant_unlike_path(@restaurant), class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
                                             <%else%>

@@ -9,6 +9,7 @@ class RestaurantsController < ApplicationController
     end
 
     def show
+        
         @restaurant = Restaurant.friendly.find_by_friendly_id(params[:id])
     end
 
@@ -70,7 +71,7 @@ class RestaurantsController < ApplicationController
                 swiper(params[:swipe], params[:photo_id])
                 restaurant = Restaurant.find(@photo.restaurant_id)
                 Like.create(restaurant_id:restaurant.id, user_id:session[:user_id])
-                flash[:alert] = "You liked #{restaurant.name}!"
+                flash[:alert] = "You liked #{restaurant.name}! "
                 redirect_to restaurant_path(restaurant)   
             elsif params[:swipe] == "left"
                 swiper(params[:swipe], params[:photo_id])
