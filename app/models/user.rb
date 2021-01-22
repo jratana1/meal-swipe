@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
     attr_accessor :new_password
 
+    has_one_attached :avatar
+
     def self.search(search)      
         User.where("lower(name) LIKE ?", "%" + search.downcase + "%")
     end

@@ -1,7 +1,21 @@
-<h1>Create an Account</h1>
-<%= button_to('Sign In with Facebook!', '/auth/facebook', class: "btn btn-primary") %>
-<br>
-<%= render partial: "form"%>
-<br>
-
-<%=link_to "Sign In", signin_path%>
+<div class="container">
+     <div class="d-flex justify-content-center">
+        <h1>Create an Account</h1>
+    </div>
+</div>
+<div class= "container">
+    <div class="d-flex justify-content-center">
+        <div class="mb-3">
+        <%= button_to('Sign In with Facebook!', '/auth/facebook', class: "btn btn-primary") %>
+        </div> 
+    </div>    
+    <br>
+    <%= render partial: "form"%>
+    <br>
+    <div class="d-flex justify-content-center">
+        <small>Have an Account?</small>
+    </div>
+    <div class="d-flex justify-content-center">
+        <%=link_to "Sign In Here", signin_path%>
+    </div>
+</div>

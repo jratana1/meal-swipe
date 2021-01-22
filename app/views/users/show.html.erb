@@ -46,7 +46,7 @@
                     </div>
                     <div class="row">
                         <% @user.photos.last(4).each do |photo| %> 
-                        <div class="col-lg-6 pr-lg-1 mb-4"><%= image_tag("#{photo.url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
+                        <div class="col-lg-6 pr-lg-1 mb-4"><%= link_to image_tag("#{photo.url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm"), restaurant_path(photo.restaurant)%></div>
                         <% end%>
                     </div>
                 </div>
