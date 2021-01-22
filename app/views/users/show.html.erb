@@ -45,10 +45,9 @@
                         <h5 class="mb-0">Recent photos</h5><%= link_to "Show all", user_photos_path(@user), class:"btn btn-link text-muted"%>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 mb-2 pr-lg-1"><%= image_tag("#{@user.photos.last.url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
-                        <div class="col-lg-6 mb-2 pl-lg-1"><%= image_tag("#{@user.photos[-2].url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
-                        <div class="col-lg-6 pr-lg-1 mb-2"><%= image_tag("#{@user.photos[-3].url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
-                        <div class="col-lg-6 pl-lg-1"><%= image_tag("#{@user.photos[-4].url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
+                        <% @user.photos.last(4).each do |photo| %> 
+                        <div class="col-lg-6 pr-lg-1 mb-4"><%= image_tag("#{photo.url}",  alt:"yummy_food", class:"img-fluid rounded shadow-sm")%></div>
+                        <% end%>
                     </div>
                 </div>
             </div>
