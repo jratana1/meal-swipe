@@ -62,7 +62,6 @@ class RestaurantsController < ApplicationController
                     end
                 end
             end      
-            byebug
             @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
         elsif session[:location]        
             @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
