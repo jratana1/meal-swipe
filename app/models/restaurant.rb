@@ -27,7 +27,7 @@ class Restaurant < ApplicationRecord
     BUSINESS_PATH = "/v3/businesses/"
     SEARCH_LIMIT = 50
     
-    def self.api_search(location, categories = "restaurants", offset = 1)
+    def self.api_search(location, categories = "restaurants", offset = rand(500))
       url = "#{API_HOST}#{SEARCH_PATH}"
       params = {
         term: "food",

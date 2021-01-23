@@ -62,9 +62,10 @@ class RestaurantsController < ApplicationController
                     end
                 end
             end      
-            @photo = Photo.swipe_photo_search(session[:location])
+            byebug
+            @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
         elsif session[:location]        
-            @photo = Photo.swipe_photo_search(session[:location])
+            @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
         else        
             @photo = Photo.all.sample
         end
@@ -77,13 +78,22 @@ class RestaurantsController < ApplicationController
                 redirect_to restaurant_path(restaurant)   
             elsif params[:swipe] == "left"
                 swiper(params[:swipe], params[:photo_id])
-                @photo = Photo.swipe_photo_search(session[:location])
+                @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
             end  
     end
 
     private
     def restaurant_params
         params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, photos_attributes:[:url])
+    end
+
+    def pluck_photo(collection)
+        if collection
+            collection.photos.sample
+        else
+            flash[:alert] = "Search had no results.  Please try again."
+            Photo.all.sample
+        end
     end
 end
 
