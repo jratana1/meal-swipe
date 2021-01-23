@@ -56,8 +56,9 @@ class RestaurantsController < ApplicationController
                 @cat_hash = Restaurant.yelp_cat_hash_converter(restaurant)
                 
                 if @rest_hash[:image_url] && !Restaurant.find_by_yelp_id(@rest_hash[:yelp_id])
-                  restaurant = Restaurant.create_with(@rest_hash)             
-                  restaurant.photos << Photo.create_with(url:restaurant.image_url)          
+                  restaurant = Restaurant.create(@rest_hash) 
+                  byebug            
+                  restaurant.photos << Photo.create(url:restaurant.image_url)          
                   @cat_hash.each do |hash|
                     restaurant.categories << Category.create_with(hash).find_or_create_by(title: hash["title"])
                     end
