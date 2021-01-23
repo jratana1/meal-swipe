@@ -2,7 +2,7 @@ class Restaurant < ApplicationRecord
     has_many :photos
     has_many :likes, dependent: :destroy
     has_many :liking_users, through: :likes, source: :user
-    has_and_belongs_to_many :categories
+    has_many :categories, through: :category_restaurants
 
     validates :address, presence: true
     validates :zip_code, presence: true
