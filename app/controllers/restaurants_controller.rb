@@ -52,13 +52,18 @@ class RestaurantsController < ApplicationController
             session[:location] = params[:location]
             results = Restaurant.api_search(params[:location])
             results.each do |restaurant|
-                @rest_hash = Restaurant.yelp_hash_converter(restaurant)
-                if @rest_hash[:image_url]         
-                  restaurant = Restaurant.create_with(@rest_hash).find_or_create_by(yelp_id: @rest_hash[:yelp_id])
-                  restaurant.photos << Photo.create_with(url:restaurant.image_url,leftswipes:0,rightswipes:0, user_id:1).find_or_create_by(url: restaurant.image_url)
+                @rest_hash = Restaurant.yelp_rest_hash_converter(restaurant)
+                @cat_hash = Restaurant.yelp_cat_hash_converter(restaurant)
+                
+                if @rest_hash[:image_url] && !Restaurant.find_by_yelp_id(@rest_hash[:yelp_id])
+                  restaurant = Restaurant.create_with(@rest_hash)             
+                  restaurant.photos << Photo.create_with(url:restaurant.image_url)          
+                  @cat_hash.each do |hash|
+                    restaurant.categories << Category.create_with(hash).find_or_create_by(title: hash["title"])
+                    end
                 end
             end      
-            @photo = Photo.swipe_photo_search(params[:location])
+            @photo = Photo.swipe_photo_search(session[:location])
         elsif session[:location]        
             @photo = Photo.swipe_photo_search(session[:location])
         else        
@@ -82,3 +87,5 @@ class RestaurantsController < ApplicationController
         params.require(:restaurant).permit(:name, :address, :city, :state, :zip_code, photos_attributes:[:url])
     end
 end
+
+

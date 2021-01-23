@@ -52,7 +52,7 @@ class Restaurant < ApplicationRecord
       response.parse
     end
     
-    def self.yelp_hash_converter(hash)
+    def self.yelp_rest_hash_converter(hash)
         @rest_hash = {}
         @rest_hash[:name] = hash["name"]
         @rest_hash[:display_phone] = hash["display_phone"]
@@ -66,4 +66,8 @@ class Restaurant < ApplicationRecord
         @rest_hash[:image_url] = hash["image_url"]
         @rest_hash
     end
+
+    def self.yelp_cat_hash_converter(hash)
+      @category_array = hash["categories"]
+  end
 end
