@@ -53,8 +53,7 @@ class RestaurantsController < ApplicationController
             results = Restaurant.api_search(params[:location])
             results.each do |restaurant|
                 @rest_hash = Restaurant.yelp_rest_hash_converter(restaurant)
-                @cat_hash = Restaurant.yelp_cat_hash_converter(restaurant)
-                
+                @cat_hash = Restaurant.yelp_cat_hash_converter(restaurant)    
                 if @rest_hash[:image_url] && !Restaurant.find_by_yelp_id(@rest_hash[:yelp_id])
                   restaurant = Restaurant.create(@rest_hash)            
                   restaurant.photos << Photo.create(url:restaurant.image_url)          
