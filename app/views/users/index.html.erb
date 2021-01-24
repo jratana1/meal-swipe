@@ -16,7 +16,7 @@
     
     <% @friends.each do |friend| %> 
         <div class="col-lg-3 col-md-4 col-6 mt-5">
-          <div class="card" style="width: 18rem;">
+          <div class="card" >
             <%= image_tag friend.image, class:"card-img-top", alt:"Card image cap"%>
               <div class="card-body">
                 <h5 class="card-title"><%=friend.name%></h5>

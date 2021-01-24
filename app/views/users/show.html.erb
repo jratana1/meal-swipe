@@ -4,28 +4,28 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-4 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                        <div class="bg-light p-4 d-flex justify-content-start text-center">
-                          <div class="profile mr-3"><%= image_tag @user.image, class:"rounded mb-2 img-thumbnail" , alt:"Card image cap", size: '130'%>
-                            <br>
-                            <h4 class="mt-0 mb-0"><%=@user.name%></h4>
-                                <% if current_user == @user %>
-                              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-dark btn-sm btn-block"%>
-                                <% end %>
-                              </div>
-                                <ul class="list-inline p-2 d-flex justify-content-">
-                                    <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Friends", users_path%></small>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.requested_friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Pending", friends_path%></small>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.size%></h5><small class="text-muted"><i class="fa fa-image mr-1"></i><br><%= link_to "Photos", user_photos_path(@user)%></small>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.size%></h5><small class="text-muted"><i class="fa fa-utensils mr-1"></i><br><%= link_to "Places", user_restaurants_path(@user)%></small>
-                                    </li>
-                                </ul>
+                        <div class="bg-light w-100 p-4 d-flex justify-content-start text-center">
+                                <div class="profile mr-3"><%= image_tag @user.image, class:"rounded mb-2 img-thumbnail" , alt:"Card image cap", size: '130'%>
+                                    <br>
+                                    <h4 class="mt-0 mb-0"><%=@user.name%></h4>
+                                        <% if current_user == @user %>
+                                    <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-outline-dark btn-sm btn-block"%>
+                                        <% end %>
+                                </div>
+                                    <ul class="list-inline p-2 d-flex justify-content-">
+                                        <li class="list-inline-item">
+                                            <h5 class="font-weight-bold mb-0 d-block"><%=@user.friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Friends", users_path%></small>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <h5 class="font-weight-bold mb-0 d-block"><%=@user.requested_friends.size%></h5><small class="text-muted"><i class="fa fa-user mr-1"></i><br><%= link_to "Pending", friends_path%></small>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <h5 class="font-weight-bold mb-0 d-block"><%=@user.photos.size%></h5><small class="text-muted"><i class="fa fa-image mr-1"></i><br><%= link_to "Photos", user_photos_path(@user)%></small>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <h5 class="font-weight-bold mb-0 d-block"><%=@user.liked_restaurants.size%></h5><small class="text-muted"><i class="fa fa-utensils mr-1"></i><br><%= link_to "Places", user_restaurants_path(@user)%></small>
+                                        </li>
+                                    </ul>
                           </div> 
                         </div>
                 </div>
