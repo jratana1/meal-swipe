@@ -90,7 +90,7 @@ class RestaurantsController < ApplicationController
         if collection
             collection.photos.sample
         else
-            flash[:alert] = "Search had no results.  Please try again."
+            flash[:alert] = "Showing places from all over the world.  Enter a city to narrow results."
             Photo.all.sample
         end
     end
