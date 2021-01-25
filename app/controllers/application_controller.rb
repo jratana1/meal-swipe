@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     before_action :require_login
+
+    WillPaginate.per_page = 20
     
     def swiper(direction, photo_id)
       @photo = Photo.find(photo_id)

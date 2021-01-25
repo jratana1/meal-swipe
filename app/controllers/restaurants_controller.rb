@@ -1,9 +1,9 @@
 class RestaurantsController < ApplicationController
     def index
         if params[:user_id]
-            @restaurants = User.friendly.find_by_friendly_id(params[:user_id]).liked_restaurants
+            @restaurants = User.friendly.find_by_friendly_id(params[:user_id]).liked_restaurants.paginate(page: params[:page])
         else
-            @restaurants = Restaurant.all.order("name ASC")
+            @restaurants = Restaurant.all.order("name ASC").paginate(page: params[:page])
         end
     end
 

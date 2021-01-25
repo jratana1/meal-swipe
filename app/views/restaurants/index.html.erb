@@ -3,54 +3,45 @@
   <hr class="mt-2 mb-5">
   <%=link_to "Add a Restaurant", new_restaurant_path, class:"btn btn-primary"%>
   <%= link_to "Show all", restaurants_path, class:"btn btn-link text-muted"%>
-  <div class="row text-center text-lg-left">
-    
-    <% @restaurants.each do |restaurant| %> 
-        <div class="col-lg-3 col-md-4 col-6 mt-5">
-          <div class="card" >
-            <%= image_tag restaurant.image_url, class:"card-img-top", alt:"Card image cap"%>
-              <div class="card-body">
-                <h5 class="card-title"><%=restaurant.name%></h5>
-                  
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> <%= restaurant.address %><br>
-                    <%= "#{restaurant.city}, #{restaurant.state} #{restaurant.zip_code}" %><br>
-                    <%= restaurant.display_phone %></li> 
-                  </ul>
-              </div>
-            
-                <ul class="list-group list-group-flush">
-                <h6 class="card-title">Friend Matches</h6>
-                <% restaurant.liking_users.where(id: current_user.friends.pluck(:id)).limit(3).each do |friend| %>
-                  <li class="list-group-item"> <%= link_to friend.name, user_path(friend), class:"card-link"%> </li>
-                <%end%>
-                </ul>
-            
-              <div class="card-body">
-                  <%=link_to "Profile", restaurant_path(restaurant), class:"card-link"%>
+  
+  <div class="card-group">
+    <div class="row text-center text-lg-left">
+        <% @restaurants.each do |restaurant| %> 
+            <div class="col-lg-3 col-md-4 col-6 mt-5">
+            <div class="card" >
+              <%= image_tag restaurant.image_url, class:"card-img-top", alt:"Card image cap"%>
+                  <div class="card-body">
+                    <h5 class="card-title"><%=restaurant.name%></h5>
+                      
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> <%= restaurant.address %><br>
+                        <%= "#{restaurant.city}, #{restaurant.state} #{restaurant.zip_code}" %><br>
+                        <%= restaurant.display_phone %></li> 
+                      </ul>
+                  </div>
                 
-                  <% if current_user.liked_restaurants.exists?(restaurant.id) %>
-                  <%= link_to "Unlike", restaurant_unlike_path(restaurant), class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
-
-                        <% if false %>
-                      <%= form_tag("/restaurants/#{restaurant.id}/unlike", method: :delete) do%>
-                      <%= hidden_field_tag :id, value: restaurant.id %>
-                      <span class="input-group-addon"><%= submit_tag "Unlike" %></span>
-                      <%end%>
-                        <% end %>
-                  <%else%>
-                  <%= button_to "Like", restaurant_likes_path(restaurant), method: :post, class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
-
-                        <% if false %>    
-                    <%= form_for(:restaurant, :url => { controller: 'likes', action: 'create', method: :post }) do |f| %> 
-                      <%= f.hidden_field :id, value: restaurant.id %>
-                      <span class="input-group-addon"><%= f.submit "Like" %></span>
-                      <%end%>
-                      <%end%>
-                  <%end%>
-              </div>
+                    <ul class="list-group list-group-flush">
+                        <h6 class="card-title">Friend Matches</h6>
+                        <% restaurant.liking_users.where(id: current_user.friends.pluck(:id)).limit(3).each do |friend| %>
+                          <li class="list-group-item"> <%= link_to friend.name, user_path(friend), class:"card-link"%> </li>
+                        <%end%>
+                    </ul>
+                
+                  <div class="card-body">
+                      <%=link_to "Profile", restaurant_path(restaurant), class:"card-link"%>  
+                        <% if current_user.liked_restaurants.exists?(restaurant.id) %>
+                            <%= link_to "Unlike", restaurant_unlike_path(restaurant), class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>
+                        <%else%>
+                            <%= button_to "Like", restaurant_likes_path(restaurant), method: :post, class:"btn btn-outline-dark btn-sm btn-block float-right mx-1"%>   
+                        <%end%>
+                  </div>
+            </div>  
           </div>
-        </div>
-    <% end %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-center p-4">
+  <%= will_paginate @restaurants %>
   </div>
 </div>
