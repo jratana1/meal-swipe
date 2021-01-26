@@ -7,7 +7,7 @@
       <div class="card-deck">
           <div class="row ">    
             <% @restaurants.each do |restaurant| %> 
-                <div class="col-lg-3 col-md-4 col-6 mt-5">
+                <div class="col-sm-6 col-lg-4 col-xl-3 d-flex mt-5">
                     <div class="card" style="height: 100%;" >
                         <%= image_tag restaurant.image_url, class:"card-img-top", alt:"Card image cap"%>
                             <div class="card-body">
@@ -20,7 +20,7 @@
                               </div>
                         
                             <ul class="list-group list-group-flush">
-                                <h6 class="card-title">Friend Matches</h6>
+                                <h6 class="card-title text-center">Friend Matches</h6>
                                 <% restaurant.liking_users.where(id: current_user.friends.pluck(:id)).limit(3).each do |friend| %>
                                   <li class="list-group-item"> <%= link_to friend.name, user_path(friend), class:"card-link"%> </li>
                                 <%end%>
