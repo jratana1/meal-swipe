@@ -50,17 +50,9 @@ class RestaurantsController < ApplicationController
     def swipe    
         if params.key?(:location)
             session[:location] = params[:location]
-            results = Restaurant.api_search(params[:location])
-            results.each do |restaurant|
-                @rest_hash = Restaurant.yelp_rest_hash_converter(restaurant)
-                @cat_hash = Restaurant.yelp_cat_hash_converter(restaurant)    
-                if @rest_hash[:image_url] && !Restaurant.find_by_yelp_id(@rest_hash[:yelp_id])
-                  restaurant = Restaurant.create(@rest_hash)            
-                  restaurant.photos << Photo.create(url:restaurant.image_url)          
-                  @cat_hash.each do |hash|
-                    restaurant.categories << Category.create_with(hash).find_or_create_by(title: hash["title"])
-                    end
-                end
+            results = YelpApiAdaptor.api_search(params[:location])
+            results.each do |rest|
+                YelpApiAdaptor.make_restauarant(rest)
             end      
             @photo = pluck_photo(Photo.swipe_photo_search(session[:location]))
         elsif session[:location]        
