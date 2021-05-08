@@ -6,8 +6,11 @@ class UsersController < ApplicationController
     def index
         if params[:search] == "" || params[:search] == nil
             @friends = current_user.friends
+            # @friends = User.all
+            render json: UserSerializer.new(@friends)
         else
             @friends = User.search(params[:search]) 
+            render json: UserSerializer.new(@friends)
         end
     end
 
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
             session[:user_id] = User.last.id
             flash[:alert] = "Welcome, you have successfully signed up."
             redirect_to user_path(@user)
+            render json: UserSerializer.new(@user)
         else
             render 'new'
         end
@@ -28,6 +32,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.friendly.find_by_friendly_id(params[:id])
+        render json: UserSerializer.new(@user)
+
     end
 
     def edit

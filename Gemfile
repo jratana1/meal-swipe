@@ -18,6 +18,8 @@ gem "racc", '~> 1.5.2'
 gem "omniauth-rails_csrf_protection"
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
+gem 'jwt'
+gem 'jsonapi-serializer'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
